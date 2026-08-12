@@ -1,3 +1,19 @@
+public class Program4 {
+    
+    public static void main(String[] args) {
+        Vector[] vectors = Vector.generate(10);
+        System.out.println(vectors[0]);
+        System.out.println(vectors[1]);
+        System.out.println(vectors[0].length());
+        System.out.println(vectors[0].scolar(vectors[1]));
+        System.out.println(vectors[0].proizv(vectors[1]));
+        System.out.println(vectors[0].cosinus(vectors[1]));
+        System.out.println(vectors[0].add(vectors[1]));
+        System.out.println(vectors[0].subtract(vectors[1]));
+    }
+
+}
+
 class Vector {
 
     private double x,y,z;
