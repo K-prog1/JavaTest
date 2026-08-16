@@ -44,7 +44,7 @@ public class Program6<E> {
         return size;
     }
 
-    // метод для вывода списка
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("[");
