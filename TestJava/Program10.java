@@ -1,22 +1,14 @@
 import java.util.ArrayList;
 
-class Shape{
-    private double volume;
+abstract class Shape{
 
-    public Shape(double volume){
-        this.volume = volume;
-    }
-
-    public  double getVolume() {
-        return volume;
-    }
+    abstract double getVolume();
 }
 
-class SolidOfRevolution extends Shape{
-    private double radius;
+abstract class SolidOfRevolution extends Shape{
+    protected double radius;
 
-    public SolidOfRevolution(double radius, double volume){
-        super(volume);
+    public SolidOfRevolution(double radius) {
         this.radius = radius;
     }
 
@@ -26,8 +18,13 @@ class SolidOfRevolution extends Shape{
 }
 
 class Ball extends SolidOfRevolution{
+    @Override
+    public double getVolume() {
+        return Math.PI * Math.pow(radius, 3) * 4 / 3;
+    }
+
     public Ball(double radius){
-        super((4.0/3.0) * Math.PI * Math.pow(radius, 3),radius );
+        super(radius);
     }
 }
 
@@ -35,8 +32,12 @@ class Cylinder extends SolidOfRevolution{
     private double height;
 
     public Cylinder(double radius, double height){
-        super(Math.PI*Math.pow(radius, 2)*height, radius);
+        super(radius);
         this.height = height;
+    }
+    @Override
+    public double getVolume(){
+        return Math.PI * radius * radius * height;
     }
 }
 
@@ -45,20 +46,23 @@ class Pyramid extends Shape{
     private double h;
 
     public Pyramid(double s, double h){
-        super(1.0/3.0 * s * h);
         this.s = s;
         this.h = h;
-        
+    }
+    @Override
+    public double getVolume(){
+        return h * s * 4 / 3;
     }
 }
 
 class Box extends Shape{
     private ArrayList<Shape> shapes = new ArrayList<>(); 
     private double available;
+    private double volume;
 
     public Box(double available){
-        super(available);
         this.available = available;
+        this.volume = available;
 
     }
 
@@ -72,6 +76,11 @@ class Box extends Shape{
             return false;
         }
     }
+
+    @Override
+        public double getVolume(){
+            return volume;
+        }
 
 }
 
